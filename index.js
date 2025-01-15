@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = process.env.NOTES_APP_PORT || 8080;
 
 //Middleware json-Format
 app.use(express.json());
@@ -29,7 +29,20 @@ app.get('/notes/:id', (req, res) => {
 });
 
 app.put('/notes/:id', (req, res) => {
-    res.send("PUT Request Called")
+    console.log(req.params.id)
+    const index = notes.findIndex(note => note.id == req.params.id);
+    console.log(index)
+    if (index === -1) {
+        res.status(404).send("Index not found")
+    };
+    const updatedNote = {
+        id: req.params.id,
+        note: req.body.note,
+        autor: req.body.autor,
+        date: new Date(),
+    }
+    notes[index] = updatedNote
+    res.send(notes)
 });
 
 app.post('/notes', (req, res) => {
