@@ -9,12 +9,12 @@ let notes = [
     {
         note: "My new Note",
         autor: "Max Mustermann",
-        date: "2025-01-15"  
+        date: "2025-01-15"
     }
 ]
 
 app.listen(port, () => {
-    console.log('server running at http://localhost:${port}');
+    console.log(`server running at http://localhost:${port}`);
 });
 
 app.get('/', (req, res) => {
