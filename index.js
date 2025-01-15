@@ -7,6 +7,7 @@ app.use(express.json());
 
 let notes = [
     {
+        id: 1,
         note: "My new Note",
         autor: "Max Mustermann",
         date: "2025-01-15"
@@ -18,15 +19,16 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    response.send('Hello World');
+    res.send('Hello World');
 });
 
 app.get('/notes', (req, res) => {
-    response.json(notes);
+    res.json(notes);
 });
 
-app.get('notes/:id', (req, res) => {
-    response.json(notes);
+app.get('/notes/:id', (req, res) => {
+    const note = notes.find(note => note.id == req.params.id);
+    res.json(note);
 });
 
 app.put('/', (req, res) => {
