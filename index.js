@@ -17,18 +17,30 @@ app.listen(port, () => {
     console.log('server running at http://localhost:${port}');
 });
 
-app.get('/', (request, response) => {
+app.get('/', (req, res) => {
     response.send('Hello World');
 });
 
-app.get('/notes', (request, response) => {
+app.get('/notes', (req, res) => {
     response.json(notes);
 });
 
-app.post('/notes', (request, response) => {
+app.get('notes/:id', (req, res) => {
+    response.json(notes);
+});
+
+app.put('/', (req, res) => {
+    res.send("PUT Request Called")
+});
+
+app.post('/notes', (req, res) => {
     const newNote = {
         note: request.body.note,
         autor: request.body.autor,
         date: response.sendDate,
     }
+});
+
+app.delete('/', (req, res) => {
+    res.send("DELETE Request Called")
 });
