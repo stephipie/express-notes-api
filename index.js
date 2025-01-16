@@ -47,8 +47,9 @@ app.put('/notes/:id', (req, res) => {
 });
 
 app.post('/notes', (req, res) => {
+    const lastNoteId = notes[notes.length-1].id;
     const newNote = {
-        id: notes.length +1,
+        id: lastNoteId +1,
         note: req.body.note,
         autor: req.body.autor,
         date: new Date(),
