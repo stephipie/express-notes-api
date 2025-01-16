@@ -47,7 +47,7 @@ app.put('/notes/:id', (req, res) => {
 });
 
 app.post('/notes', (req, res) => {
-    const lastNoteId = notes[notes.length-1].id;
+    const lastNoteId = parseInt(notes[notes.length-1].id);
     const newNote = {
         id: lastNoteId +1,
         note: req.body.note,
